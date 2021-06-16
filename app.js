@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const encrypt = require('mongoose-encryption');
+const md5 = require('md5');
 const app = express();
 const port = 3000;
 
@@ -30,7 +30,7 @@ app.route("/")
 
 .post((req,res)=>{
     const username = req.body.email
-    const password = req.body.password
+    const password = md5(req.body.password)
 
     User.findOne({email: username}, function(err, foundUser){
         if(err){
@@ -56,7 +56,7 @@ app.route("/register")
     console.log(req.body)
     const user = new User({
         email: req.body.email,
-        password: req.body.password
+        password: md5(req.body.password)
     })
     user.save().then(()=>{
         res.redirect("/")
