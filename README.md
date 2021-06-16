@@ -2,7 +2,7 @@
 
 Em relação a criptgrafia e autenticação foi possível entender melhor sobre:
 - Encryption / Decryption: chave é uma vulnerabilidade
-- Hashing: tabela de hash é uma vulnerabilidade
+- Hash: tabela de hash é uma vulnerabilidade
 - Salt: tabela de hash + salt é uma vulnerabilidade
 - bcrypt: contém camadas de salt, é mais lento
 - passport: middleware para Node.js
