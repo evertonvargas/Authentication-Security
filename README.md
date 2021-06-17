@@ -5,5 +5,22 @@ Em relação a criptgrafia e autenticação foi possível entender melhor sobre:
 - Hash: tabela de hash é uma vulnerabilidade
 - Salt: tabela de hash + salt é uma vulnerabilidade
 - bcrypt: contém camadas de salt, é mais lento
-- passport: middleware para Node.js
-- oauth: usar Google, Facebook, Github como métodos de login com auth code, acess token
+- Cookies and Sessions
+- Passport: middleware para Node.js
+- OAuth 2.0: usar Google, Facebook, Github como métodos de login com auth code, acess token
+
+## :rocket: Technologies
+- NodeJS
+- Express
+- Mongoose
+- Bcrypt
+## :camera: 
+<div align="center">
+    <img src="login.jpg">
+<div>
+
+## Available Scripts
+Execute:
+### `npm install`
+e
+### `npm start`

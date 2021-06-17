@@ -1,7 +1,7 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const app = express();
 const port = 3000;
@@ -12,10 +12,9 @@ mongoose.connect("mongodb://localhost:27017/userDB", {
 });
 const userSchema = new mongoose.Schema({
   email: String,
-  password:String,
+  password: String,
 });
 
-userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ["password"]});
 const User = mongoose.model("User", userSchema);
 
 app.use(express.urlencoded({ extended: true }));
@@ -29,45 +28,46 @@ app.route("/")
     res.render("index");
 })
 
-.post((req,res)=>{
-    const username = req.body.email
-    const password = req.body.password
+.post((req, res) => {
+    const username = req.body.email;
+    const password = req.body.password;
 
-    User.findOne({email: username}, function(err, foundUser){
-        if(err){
-            console.log(err)
-        }else{
-            if(foundUser){
-                bcrypt.compare(password, hash, function(err, result) {
-                    if(result === true){
-                        res.locals.title = "Site";
-                        res.render("site")
-                    }
-                });
+    User.findOne({ email: username }, function (err, foundUser) {
+        if (err) {
+            console.log(err);
+        } else {
+            if (foundUser) {
+                bcrypt.compare(password, foundUser.password, function (err, result) {
+                if (result === true) {
+                    res.locals.title = "Site";
+                    res.render("site");
+                }});
             }
         }
-    })
-})
+    });
+});
 
 app.route("/register")
 .get((req, res) => {
-    res.locals.title = "Register";                   
+    res.locals.title = "Register";
     res.render("register");
 })
 
-.post((req,res)=>{
-    console.log(req.body)
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+.post((req, res) => {
+    console.log(req.body);
+    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         const user = new User({
             email: req.body.email,
-            password: hash
+            password: hash,
+        });
+        user.save()
+        .then(() => {
+            res.redirect("/");
         })
-        user.save().then(()=>{
-            res.redirect("/")
-        }).catch(err=>{
-            res.send(err)
-        })
-    });   
+        .catch((err) => {
+            res.send(err);
+        });
+    });
 });
 
 app.listen(port, () => {
