@@ -18,7 +18,6 @@ Em relação a criptgrafia e autenticação foi possível entender melhor sobre:
 ## Available Scripts
 Execute:
 ### `npm install`
-### `npm start`
 
 ## :camera: Projeto
 <div align="center">
