@@ -14,13 +14,14 @@ Em relação a criptgrafia e autenticação foi possível entender melhor sobre:
 - Express
 - Mongoose
 - Bcrypt
-## :camera: 
-<div align="center">
-    <img src="login.jpg">
-<div>
 
 ## Available Scripts
 Execute:
 ### `npm install`
-e
 ### `npm start`
+
+## :camera: Projeto
+<div align="center">
+    <img src="login.JPG">
+<div>
+
